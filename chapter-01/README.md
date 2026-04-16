@@ -42,7 +42,7 @@ extern int *__errno_location(void);
 
 ### Rules to be aware of with respect to `errno`
 There are **two** rules to be aware of with respect to `errno`.
-1. It's value is never cleared by a routine if and error does not occur.
+1. It's value is never cleared by a routine if an error does not occur.
 2. The value of `errno` is never set to 0 by any of the functions, and none of
    the constants defined in `<errno.h>` has a value of 0.
 

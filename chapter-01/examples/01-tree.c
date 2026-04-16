@@ -75,12 +75,9 @@ int main(int argc, const char *const argv[]) {
   puts(initial_path);
   do {
     while ((dirp = ctx[level].next_dirp)) {
-      for (i = 0; i < ll; i++) {
-        for (j = 0; j < IDENT_SIZE; j++)
-          putchar(' ');
-      }
+      printf("%*s", ll * IDENT_SIZE, "");
 
-      for (; i < level + 1; i++) {
+      for (i = ll; i < level + 1; i++) {
         putchar('|');
         c = i == level ? '-' : ' ';
         for (j = 0; j < (IDENT_SIZE - 1); j++)
