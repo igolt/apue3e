@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# This script is inteded to be used as a pre-commit hook to prevent commiting
+# files that are not images, Markdown, C source files or shell scripts
+
+exec 1>&2
+
+[ "$SKIP" = 1 ] && {
+  printf "Skipping pre-commit hook..."
+  sleep 1
+  echo
+  exit 0
+}
+
+INVALID_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -Ev '\.(png|md|c|sh)$')
+
+if [ -n "$INVALID_FILES" ]; then
+  printf "Found files that are not png, md, c or sh:\n\n"
+  printf '%s\n\n' "$INVALID_FILES"
+  echo "Remove this files or skip this verification by setting the env var SKIP to 1"
+  exit 1
+fi
